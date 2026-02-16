@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Electrical Services",
+    "description": "Complete electrical solutions for residential and commercial properties including wiring, panel upgrades, and troubleshooting.",
+    "price": 150,
+    "icon": "⚡",
+    "category": "electrical"
+  },
+  {
+    "id": 2,
+    "name": "Electronics Repair",
+    "description": "Professional repair services for all electronic devices including TVs, computers, and home appliances.",
+    "price": 75,
+    "icon": "🔧",
+    "category": "electronics"
+  },
+  {
+    "id": 3,
+    "name": "Solar Systems",
+    "description": "Design, installation, and maintenance of solar panel systems for energy-efficient solutions.",
+    "price": 2500,
+    "icon": "☀️",
+    "category": "solar"
+  },
+  {
+    "id": 4,
+    "name": "Solar Repair",
+    "description": "Expert repair and maintenance services for existing solar systems to ensure optimal performance.",
+    "price": 200,
+    "icon": "🔋",
+    "category": "solar"
+  },
+  {
+    "id": 5,
+    "name": "Emergency Services",
+    "description": "24/7 emergency electrical and solar services for urgent repairs and system failures.",
+    "price": 300,
+    "icon": "🚨",
+    "category": "emergency"
+  },
+  {
+    "id": 6,
+    "name": "Consultation",
+    "description": "Professional consultation for energy efficiency, system design, and technology upgrades.",
+    "price": 100,
+    "icon": "💡",
+    "category": "consultation"
+  }
+]

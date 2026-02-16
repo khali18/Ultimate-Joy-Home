@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "nashiru baba",
+    "email": "nashirubabamu8@gmail.com",
+    "phone": "0257224309",
+    "service": "Solar Repair",
+    "date": "2026-02-23",
+    "time": "11:00 AM",
+    "message": "repair",
+    "type": "appointment",
+    "createdAt": "2026-02-15T14:51:10.992Z",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "name": "Khali Yung",
+    "email": "khaliyoung845@gmail.com",
+    "phone": "0243755116",
+    "service": "Electrical Services",
+    "date": "2026-02-22",
+    "time": "5:00 PM",
+    "message": "",
+    "type": "appointment",
+    "createdAt": "2026-02-15T15:09:55.963Z",
+    "status": "pending"
+  },
+  {
+    "id": 3,
+    "customerName": "BABA",
+    "email": "nashirubabamu8@gmail.com",
+    "phone": "0257224309",
+    "service": "Solar Repair",
+    "date": "2026-02-23",
+    "time": "11:00 AM",
+    "status": "pending",
+    "notes": "",
+    "createdAt": "2026-02-16T07:54:39.449Z"
+  }
+]

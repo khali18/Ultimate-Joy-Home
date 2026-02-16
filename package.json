@@ -1,0 +1,33 @@
+{
+  "name": "ultimate-joy-home",
+  "version": "1.0.0",
+  "description": "Ultimate Joy Home - Electrical & Electronics Website",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "fs-extra": "^11.1.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "electrical",
+    "electronics",
+    "solar",
+    "repair",
+    "website",
+    "business"
+  ],
+  "author": "Mr. J Electrical and Electronics",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

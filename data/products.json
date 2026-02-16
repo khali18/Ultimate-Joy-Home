@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Circuit Breaker Panel",
+    "category": "electrical",
+    "description": "Modern circuit breaker panel with advanced safety features and easy installation.",
+    "price": 299.99,
+    "icon": "⚡",
+    "badge": "Best Seller"
+  },
+  {
+    "id": 2,
+    "name": "LED Light Bulbs Set",
+    "category": "electrical",
+    "description": "Energy-efficient LED bulbs with long lifespan and bright illumination.",
+    "price": 45.99,
+    "icon": "💡",
+    "badge": "Eco-Friendly"
+  },
+  {
+    "id": 3,
+    "name": "Solar Panel Kit",
+    "category": "solar",
+    "description": "Complete solar panel kit with mounting hardware and inverter.",
+    "price": 1299.99,
+    "icon": "☀️",
+    "badge": "Popular"
+  },
+  {
+    "id": 4,
+    "name": "Battery Charger",
+    "category": "electronics",
+    "description": "Universal battery charger for multiple battery types with fast charging.",
+    "price": 89.99,
+    "icon": "🔋",
+    "badge": "New"
+  },
+  {
+    "id": 5,
+    "name": "Electrical Tester",
+    "category": "accessories",
+    "description": "Professional electrical tester for voltage, current, and resistance.",
+    "price": 159.99,
+    "icon": "🔧",
+    "badge": "Pro Tool"
+  },
+  {
+    "id": 6,
+    "name": "Solar Inverter",
+    "category": "solar",
+    "description": "High-efficiency solar inverter for grid-tie systems.",
+    "price": 899.99,
+    "icon": "🔄",
+    "badge": "Premium"
+  },
+  {
+    "id": 7,
+    "name": "Wire Strippers",
+    "category": "accessories",
+    "description": "Professional wire strippers with multiple gauge settings.",
+    "price": 34.99,
+    "icon": "✂️",
+    "badge": "Essential"
+  },
+  {
+    "id": 8,
+    "name": "Smart Switch",
+    "category": "electronics",
+    "description": "WiFi-enabled smart switch for home automation.",
+    "price": 79.99,
+    "icon": "📱",
+    "badge": "Smart Home"
+  }
+]

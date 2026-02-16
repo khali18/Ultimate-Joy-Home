@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Joy Home - Admin Panel</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-nav">
+                <div class="admin-logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>Ultimate Joy Home</span>
+                </div>
+                <div class="admin-user">
+                    <span>Welcome, Admin</span>
+                    <button class="btn btn-danger" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Admin Content -->
+    <div class="admin-container">
+        <div class="admin-grid">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <ul class="admin-menu">
+                    <li><a href="#dashboard" class="active" onclick="showSection('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a></li>
+                    <li><a href="#appointments" onclick="showSection('appointments')">
+                        <i class="fas fa-calendar"></i> Appointments
+                    </a></li>
+                    <li><a href="#contacts" onclick="showSection('contacts')">
+                        <i class="fas fa-envelope"></i> Contact Messages
+                    </a></li>
+                    <li><a href="#services" onclick="showSection('services')">
+                        <i class="fas fa-tools"></i> Services
+                    </a></li>
+                    <li><a href="#products" onclick="showSection('products')">
+                        <i class="fas fa-shopping-cart"></i> Products
+                    </a></li>
+                    <li><a href="#customers" onclick="showSection('customers')">
+                        <i class="fas fa-users"></i> Customers
+                    </a></li>
+                    <li><a href="#settings" onclick="showSection('settings')">
+                        <i class="fas fa-cog"></i> Settings
+                    </a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="admin-section active">
+                    <h2>Dashboard Overview</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Total Appointments</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">Contact Messages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Services Offered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">142</div>
+                            <div class="stat-label">Happy Customers</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <div class="recent-activities">
+                            <h3>Recent Activities</h3>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <div class="activity-details">
+                                        <strong>New Appointment</strong>
+                                        <p>John Doe scheduled Electrical Service</p>
+                                        <small>2 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="activity-details">
+                                        <strong>New Contact Message</strong>
+                                        <p>Jane Smith inquired about Solar Installation</p>
+                                        <small>4 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-wrench"></i>
+                                    <div class="activity-details">
+                                        <strong>Service Completed</strong>
+                                        <p>Electrical repair for Customer #123</p>
+                                        <small>1 day ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <h3>Quick Actions</h3>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary" onclick="showSection('appointments')">
+                                    <i class="fas fa-plus"></i> New Appointment
+                                </button>
+                                <button class="btn btn-success" onclick="exportData()">
+                                    <i class="fas fa-download"></i> Export Data
+                                </button>
+                                <button class="btn btn-primary" onclick="generateReport()">
+                                    <i class="fas fa-chart-bar"></i> Generate Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Appointments Section -->
+                <section id="appointments" class="admin-section">
+                    <div class="section-header">
+                        <h2>Appointments Management</h2>
+                        <button class="btn btn-primary" onclick="openAppointmentModal()">
+                            <i class="fas fa-plus"></i> Add Appointment
+                        </button>
+                    </div>
+                    
+                    <div class="table-filters">
+                        <input type="text" id="appointmentSearch" placeholder="Search appointments..." onkeyup="filterAppointments()">
+                        <select id="statusFilter" onchange="filterAppointments()">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer Name</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <tr>
+                                <td>#001</td>
+                                <td>John Doe</td>
+                                <td>Electrical Services</td>
+                                <td>2024-02-20</td>
+                                <td>10:00 AM</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="editAppointment(1)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteAppointment(1)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>Jane Smith</td>
+                                <td>Solar Systems</td>
+                                <td>2024-02-21</td>
+                                <td>2:00 PM</td>
+                                <td><span class="status-badge confirmed">Confirmed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="editAppointment(2)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteAppointment(2)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Contact Messages Section -->
+                <section id="contacts" class="admin-section">
+                    <div class="section-header">
+                        <h2>Contact Messages</h2>
+                        <button class="btn btn-primary" onclick="exportContacts()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                    
+                    <div class="table-filters">
+                        <input type="text" id="contactSearch" placeholder="Search messages..." onkeyup="filterContacts()">
+                        <select id="contactStatusFilter" onchange="filterContacts()">
+                            <option value="">All Status</option>
+                            <option value="new">New</option>
+                            <option value="read">Read</option>
+                            <option value="replied">Replied</option>
+                        </select>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody">
+                            <tr>
+                                <td>#001</td>
+                                <td>Mike Johnson</td>
+                                <td>mike@email.com</td>
+                                <td>555-0101</td>
+                                <td>Electrical</td>
+                                <td>Need electrical wiring for new construction...</td>
+                                <td>2024-02-18</td>
+                                <td><span class="status-badge new">New</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="viewContact(1)">View</button>
+                                    <button class="btn btn-sm btn-success" onclick="replyContact(1)">Reply</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Services Section -->
+                <section id="services" class="admin-section">
+                    <div class="section-header">
+                        <h2>Services Management</h2>
+                        <button class="btn btn-primary" onclick="openServiceModal()">
+                            <i class="fas fa-plus"></i> Add Service
+                        </button>
+                    </div>
+
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h3>Electrical Services</h3>
+                                <p>Complete electrical solutions</p>
+                                <span class="service-price">Starting at GHS 1,500</span>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn btn-sm btn-primary" onclick="editService(1)">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteService(1)">Delete</button>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h3>Electronics Repair</h3>
+                                <p>Professional repair services for all electronic devices</p>
+                                <span class="service-price">Starting at GHS 750</span>
+                            </div>
+                            <div class="service-actions">
+                                <button class="btn btn-sm btn-primary" onclick="editService(2)">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteService(2)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="admin-section">
+                    <div class="section-header">
+                        <h2>Products Management</h2>
+                        <button class="btn btn-primary" onclick="openProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                    
+                    <div class="table-filters">
+                        <input type="text" id="productSearch" placeholder="Search products..." onkeyup="filterProducts()">
+                        <select id="productCategoryFilter" onchange="filterProducts()">
+                            <option value="">All Categories</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="solar">Solar</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid">
+                        <div class="product-item">
+                            <div class="product-info">
+                                <h3>Circuit Breaker Panel</h3>
+                                <p>Modern circuit breaker panel with advanced safety features</p>
+                                <span class="product-category">Electrical</span>
+                                <span class="product-price">GHS 2,999.99</span>
+                                <span class="product-badge">Best Seller</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary" onclick="editProduct(1)">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteProduct(1)">Delete</button>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-info">
+                                <h3>Solar Panel Kit</h3>
+                                <p>Complete solar panel kit with mounting hardware</p>
+                                <span class="product-category">Solar</span>
+                                <span class="product-price">GHS 12,999.99</span>
+                                <span class="product-badge">Popular</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary" onclick="editProduct(2)">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteProduct(2)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Customers Section -->
+                <section id="customers" class="admin-section">
+                    <div class="section-header">
+                        <h2>Customers Management</h2>
+                        <button class="btn btn-primary" onclick="exportCustomers()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+
+                    <div class="table-filters">
+                        <input type="text" id="customerSearch" placeholder="Search customers..." onkeyup="filterCustomers()">
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Total Services</th>
+                                <th>Last Service</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTableBody">
+                            <tr>
+                                <td>#001</td>
+                                <td>John Doe</td>
+                                <td>john@email.com</td>
+                                <td>555-0101</td>
+                                <td>3</td>
+                                <td>2024-02-15</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="viewCustomer(1)">View</button>
+                                    <button class="btn btn-sm btn-success" onclick="editCustomer(1)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="admin-section">
+                    <h2>Settings</h2>
+                    
+                    <div class="settings-form">
+                        <h3>Business Information</h3>
+                        <form id="businessSettingsForm">
+                            <div class="form-group">
+                                <label for="businessName">Business Name</label>
+                                <input type="text" id="businessName" value="Ultimate Joy Home">
+                            </div>
+                            <div class="form-group">
+                                <label for="businessPhone">Phone Number</label>
+                                <input type="tel" id="businessPhone" value="+233 54 655 109">
+                            </div>
+                            <div class="form-group">
+                                <label for="businessEmail">Email</label>
+                                <input type="email" id="businessEmail" value="info@ultimatejoyhome.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="businessAddress">Address</label>
+                                <textarea id="businessAddress">Tamale, Northern Region, Ghana</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Settings</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('productModal')">&times;</span>
+            <h3>Add/Edit Product</h3>
+            <form id="productForm" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="solar">Solar</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">Price (GHS)</label>
+                        <input type="number" id="productPrice" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productBadge">Badge (Optional)</label>
+                        <input type="text" id="productBadge" placeholder="e.g., Best Seller, New, Popular">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productIcon">Icon</label>
+                        <select id="productIcon">
+                            <option value="⚡">⚡ Electrical</option>
+                            <option value="💡">💡 Light</option>
+                            <option value="☀️">☀️ Solar</option>
+                            <option value="🔋">🔋 Battery</option>
+                            <option value="🔧">🔧 Tools</option>
+                            <option value="🔄">🔄 Inverter</option>
+                            <option value="✂️">✂️ Tools</option>
+                            <option value="📱">📱 Smart</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Product Image</label>
+                        <input type="file" id="productImage" accept="image/*" onchange="previewImage(event)">
+                        <div id="imagePreview" class="image-preview" style="display: none;">
+                            <img id="previewImg" src="" alt="Product preview">
+                            <button type="button" class="btn btn-sm btn-danger" onclick="removeImage()">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('appointmentModal')">&times;</span>
+            <h3>Add/Edit Appointment</h3>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="modalCustomerName">Customer Name</label>
+                    <input type="text" id="modalCustomerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalCustomerEmail">Email</label>
+                    <input type="email" id="modalCustomerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalCustomerPhone">Phone</label>
+                    <input type="tel" id="modalCustomerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalService">Service</label>
+                    <select id="modalService" required>
+                        <option value="">Select Service</option>
+                        <option value="Electrical Services">Electrical Services</option>
+                        <option value="Electronics Repair">Electronics Repair</option>
+                        <option value="Solar Systems">Solar Systems</option>
+                        <option value="Solar Repair">Solar Repair</option>
+                        <option value="Emergency Services">Emergency Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalDate">Date</label>
+                    <input type="date" id="modalDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalTime">Time</label>
+                    <select id="modalTime" required>
+                        <option value="">Select Time</option>
+                        <option value="8:00 AM">8:00 AM</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalStatus">Status</label>
+                    <select id="modalStatus" required>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalNotes">Notes</label>
+                    <textarea id="modalNotes"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/admin.js"></script>
+</body>
+</html>
